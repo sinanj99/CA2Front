@@ -1,4 +1,4 @@
-# Simple template to create SPA's with plain JavaScript using Babel, Webpack and Webpacks devserver
+# CA2 SPA
 
 ## Getting started
 
