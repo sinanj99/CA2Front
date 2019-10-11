@@ -4,20 +4,37 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="style.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Grand+Hotel&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
-  <div class="container">
-    <em>
-        This is meant as a quick intro to how we will create front-end code for the rest of the semester.<br/>
-        The ONLY HTML-file you should consider is index.htm (in the public folder) and ALL your javascript code should go into the source folder.<br/>
-        Use this small example as a template for this week. Next time we will focus on JavaScript, it will be with React, i a way "similar" this<br/>
-        Make sure all your JavaScript code is included in index.js, the "by magic" it will be included in the bundle.js file which is included by the index.html
-    </em>
-    <br/>
-    <br/>
-    <h2>Jokes</h2>
-    <p id="jokes"> </p>
+  <div class="container-fluid p-0">
+    <!--
+    <nav>
+      <a class="left" href="#">Hobbysearch</a>
+      <a class="right">About</a>
+      <a class="right">a</a>
+    </nav>
+    -->
+    <section class="find">
+      <div class="row">
+          <h1 class="logo">Hobbysearch</h1>
+      </div>
+      <div class="row form">
+        <div class="col-md-9">
+          <input type="text" class="search" placeholder="Indtast søgekriterie!" id="search">
+        </div>
+        <div class="col-md-3">
+          <button class="button">Søg</button>
+        </div>
+      </div>
+    </section>
+    <section>
+        <table class="table"></table>
+    </section>
   </div>
   <script src="bundle.js"></script>
 </body>
