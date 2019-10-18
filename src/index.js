@@ -1,4 +1,10 @@
 import 'bootstrap/dist/css/bootstrap.css'
+/*
+new fullpage('#fullpage', {
+    autoScrolling: true,
+    navigation: true
+})
+*/
 let res = document.querySelectorAll("section")[1];
 let table = document.querySelector("table");
 
@@ -13,6 +19,13 @@ function makeOptions(http_method, body) {
         options.body = JSON.stringify(body);
     }
     return options;
+}
+
+function handleHttpErrors(res) {
+    if (!res.ok) {
+        return Promise.reject({ status: res.status, fullError: res.json() })
+    }
+    return res.json();
 }
 /*
 document.getElementById("add").onclick = function () {
@@ -30,18 +43,38 @@ document.getElementById("edit").onclick = function () {
     fetch("https://sinanjasar.dk/rest-jpa-devops-starter-1.0.1/api/person/" + id, options);
   }
   */
-document.querySelector(".find .button").onclick = function () {
-    const hobby = document.querySelector(".find .search").value;
-    console.log(hobby);
-    fetch("http://localhost:8080/startcodeoas/api/person/hobby/" + hobby)
-        .then(res => res.json())
+document.querySelector(".find .button").addEventListener('click', function() {
+    table.innerHTML = "";
+    const input = document.querySelector(".find .search").value;
+    let resource;
+    let res_size = document.getElementById("res_size");
+    if (!isNaN(input)) {
+        resource = "phone";
+    } else {
+        resource = "hobby";
+    }
+    fetch(`http://localhost:8080/startcodeoas/api/person/${resource}/${input}`)
+        .then(res => handleHttpErrors(res))
         .then(data => {
-            console.log("sne");
-            res.classList.toggle("result");
-            let tablehead = "<tr>" + Object.keys(data[0]).map(x => "<td>" + x.toUpperCase() + "</td>").join('') + "</tr>";
-            let tabledata = data.map(obj => "<tr>" + Object.keys(obj).map(x => "<td>" + obj[x] + "</td>").join('') + "</tr>").join('');
-            table.innerHTML = tablehead.concat(tabledata);
+            res_size.style.margin = "20px";
+            res_size.classList.add("m-3");
+            let tablehead = "<thead><tr><td>Navn</td><td>Email</td><td>Vej</td><td>Postnummer</td><td>By</td></tr></thead>";
+            let tabledata;
+            if (data.length > 1) {
+                res_size.innerHTML = `${data.length} resultater`;
+                tabledata = "<tbody>" + data.map(obj => `<tr><td>${obj.firstName} ${obj.lastName}</td>
+            <td>${obj.email}</td><td>${obj.street}</td><td>${obj.zip}</td><td>${obj.city}</td></tr>`).join('') + "</tbody>";
+            } else {
+                tabledata = "<tbody>" + `<tr><td>${data.firstName} ${data.lastName}</td>
+            <td>${data.email}</td><td>${data.street}</td><td>${data.zip}</td><td>${data.city}</td></tr>` + "</tbody>";
+                res_size.innerHTML = `1 resultat`;
+            }
+            table.innerHTML = tablehead + tabledata;
+        }).catch(err => {
+            if (err.status) {
+                err.fullError.then(e => table.innerHTML = "<h1>Ingen personer fundet !</h1>")
+            } else {
+                console.log("Network error");
+            }
         });
-
-};
-
+})
