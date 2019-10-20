@@ -13,12 +13,6 @@
 <body>
     <div class="container-fluid p-0">
 
-        <nav>
-            <a class="left" href="#">Hobbysearch</a>
-            <a class="right" href="#">Opret</a>
-            <a class="right" href="#">Find</a>
-            <a class="right" href="#">Slet</a>
-        </nav>
         <div id="fullpage">
             <section class="find">
                 <div class="row">
@@ -37,6 +31,31 @@
                 <div class="col-12 p-0">
                     <h1 id="res_size" class="text-center m-0"></h1>
                     <table class="table table-striped m-0"></table>
+                </div>
+            </section>
+
+            <section class="createSection">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-12"><h1 class="text-center">Opret en person</h1></div>
+                    <div class="col-12" id="createRes"></div> 
+                    <div class="col-6">
+                        <div class="form-row">
+                            <input type="text" class="form-control col-6" id="cFname" placeholder="Fornavn">
+                            <input type="text" class="form-control col-6" id="cLname" placeholder="Efternavn">
+                            <input type="email" class="form-control col-12" id="cEmail" placeholder="E-mail adresse">
+                            <input type="text" class="form-control col-6" id="cPhone" placeholder="Telefonnr">
+                            <input type="text" class="form-control col-6" id="cPhoneDesc" placeholder="Telefon beskrivelse">
+                            <input type="text" class="form-control col-6" id="cStreet" placeholder="Gade">
+                            <input type="text" class="form-control col-6" id="cStreetInfo" placeholder="Adresse beskrivelse">
+                            <input type="text" class="form-control col-4" id="cZip" placeholder="Postnummer">
+                            <input type="text" class="form-control col-8" id="cCity" placeholder="By">
+                            <input type="text" class="form-control col-4" id="cHobby" placeholder="Hobby">
+                            <input type="text" class="form-control col-8" id="cHobbyDesc" placeholder="Hobby beskrivelse">
+                            <button class="btn btn-danger col-12" id="createBtn">Opret</button>
+                        </div>
+                    </div>
+
+                     
                 </div>
             </section>
         </div>

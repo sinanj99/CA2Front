@@ -136,3 +136,21 @@
        -webkit-appearance: none;
        box-shadow: none !important;
    }
+
+   .createSection{
+    background-color: #f1f1f1;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+   }
+
+   .createSection h1{
+    color: #000;
+    font-family: inherit;
+    text-align: center;
+    
+   }
+
+   .form-control, #createBtn{
+       margin-top: 10px;
+   }

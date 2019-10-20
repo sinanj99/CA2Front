@@ -12,6 +12,7 @@ function makeOptions(http_method, body) {
     var options = {
         method: http_method,
         headers: {
+            "Accept": "application/json",
             "Content-type": "application/json"
         }
     }
@@ -27,22 +28,73 @@ function handleHttpErrors(res) {
     }
     return res.json();
 }
-/*
-document.getElementById("add").onclick = function () {
-    const name = document.getElementById("name").value;
-    const data = { name: name };
-    const options = makeOptions("POST", data);
-    fetch("https://sinanjasar.dk/rest-jpa-devops-starter-1.0.1/api/person/", options);
-  }
 
+document.querySelector("#createBtn").addEventListener('click', function() {
+    const fname = document.getElementById("cFname").value;
+    const lname = document.getElementById("cLname").value;
+    const email = document.getElementById("cEmail").value;
+    const phone = document.getElementById("cPhone").value;
+    const phoneDesc = document.getElementById("cPhoneDesc").value;
+    const street = document.getElementById("cStreet").value;
+    const streetInfo = document.getElementById("cStreetInfo").value;
+    const zip = document.getElementById("cZip").value;
+    const city = document.getElementById("cCity").value;
+    const hobby = document.getElementById("cHobby").value;
+    const hobbyDesc = document.getElementById("cHobbyDesc").value;
+
+    const hobbyy = "name:"+hobby+",description:"+hobbyDesc;
+    
+
+    const hobbies = []
+    hobbies[0] = hobbyy;
+
+    const phonee = "number:"+phone+",description:"+phoneDesc;
+
+    const phones = []
+    phones[0] = phonee;
+
+    const data = { 
+        firstName: fname, 
+        lastName: lname, 
+        email: email, 
+        phones: phones,
+        street: street,
+        streetInfo: streetInfo,
+        zip: zip,
+        city: city,
+        hobbies: hobbies
+    };
+    const options = makeOptions("POST", data);
+
+    fetch("http://localhost:8080/startcodeoas/api/person/", options)
+        .then(res => handleHttpErrors(res))
+        .then(data => {
+            document.getElementById("createRes").innerHTML = "<h1>Du er nu blevet oprettet!</h1>";
+            console.log(data);
+        }).catch(err => {
+            if (err.status) {
+                if(err.status === 409){
+                    document.getElementById("createRes").innerHTML = "<h1>Person med de indtastede oplysninger eksisterer allerede!</h1>";
+                }else if(console.log(400)){
+                    document.getElementById("createRes").innerHTML = "<h1>Alle felter skal udfyldes!</h1>";
+                }else{
+                    document.getElementById("createRes").innerHTML = "<h1>Der opstod en fejl, prøv igen.</h1>";
+                }
+            } else {
+                console.log("Network error");
+            }
+        });
+    
+})
+/*
 document.getElementById("edit").onclick = function () {
     const id = document.getElementById("editId").value;
     const name = document.getElementById("name").value;
     const data = { name: name };
     const options = makeOptions("PUT", data);
     fetch("https://sinanjasar.dk/rest-jpa-devops-starter-1.0.1/api/person/" + id, options);
-  }
-  */
+}
+*/
 document.querySelector(".find .button").addEventListener('click', function() {
     table.innerHTML = "";
     const input = document.querySelector(".find .search").value;

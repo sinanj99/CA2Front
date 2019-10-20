@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="fullpage.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Grand+Hotel|Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <div class="container-fluid p-0">
+
+        <nav>
+            <a class="left" href="#">Hobbysearch</a>
+            <a class="right" href="#">Opret</a>
+            <a class="right" href="#">Find</a>
+            <a class="right" href="#">Slet</a>
+        </nav>
+        <div id="fullpage">
+            <section class="find">
+                <div class="row">
+                    <h1 class="logo">Hobbysearch</h1>
+                </div>
+                <div class="row form">
+                    <div class="col-md-9">
+                        <input type="text" class="search" placeholder="Indtast hobby eller nummer ..." id="search">
+                    </div>
+                    <div class="col-md-3">
+                        <button class="button">Søg</button>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <div class="col-12 p-0">
+                    <h1 id="res_size" class="text-center m-0"></h1>
+                    <table class="table table-striped m-0"></table>
+                </div>
+            </section>
+        </div>
+    </div>
+    <script src="bundle.js"></script>
+    <script src="fullpage.min.js"></script>
+</body>
+
+</html>
